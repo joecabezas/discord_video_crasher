@@ -1,8 +1,12 @@
 #!/bin/sh
 
-# change pix_fmt of input video
-#ffmpeg -i $1 -pix_fmt yuv444p yuv444p.mp4
+# method 1: just takes the video, here we copy it in order to have a common name to
+# work with after, very lazy I know
 cp $1 yuv444p.mp4
+
+# if previous method does not work, change the pix_fmt of the input
+# and generate a new one, uncomment next line
+#ffmpeg -i $1 -pix_fmt yuv444p yuv444p.mp4
 
 #generate crash video
 ffmpeg -y -f lavfi -i color="size=15000x15000:duration=0.44:rate=25:color=red" -pix_fmt yuv420p crash.mp4
